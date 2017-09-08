@@ -7,8 +7,8 @@ import android.content.IntentFilter;
 import android.os.BatteryManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         public void onReceive(Context context, Intent intent) {
             int level = intent.getIntExtra(BatteryManager.EXTRA_LEVEL, 0);
             txt_battery.setText("Battery Level is :" + level + "%");
+            if (level < 30)
+                Toast.makeText(context, "Battery low", Toast.LENGTH_SHORT).show();
         }
     }
 }
